@@ -1,0 +1,54 @@
+type Query {
+    users(query: String): [User!]!
+    cards(query: GetCardInput): [User!]!
+}
+
+type Mutation {
+    createUser(data: CreateUserInput!): User
+    addCard(data: CreateCardInput!): Card
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    password: String!
+    cards: [Card!]!
+    reviews: [Review!]!
+    tags: [Tag!]!
+}
+
+type Review {
+    id: ID!
+    timestamp: Int!
+}
+
+type Card {
+    id: ID!
+    front: String!
+    back: String!
+    reversible: String!
+}
+
+type Tag {
+    id: ID!
+    description: String!
+}
+
+# Inputs
+
+input CreateUserInput {
+    name: String!
+    email: String!
+    password: String!
+}
+
+input CreateCardInput {
+    front: String!
+    back: String!
+    reversible: Boolean!
+}
+
+input GetCardInput {
+    tags: [ID]
+}
