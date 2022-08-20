@@ -4,8 +4,9 @@ type Query {
 }
 
 type Mutation {
-    createUser(data: CreateUserInput!): User
-    addCard(data: CreateCardInput!): Card
+    createUser(data: CreateUserInput!): User!
+    addCard(data: CreateCardInput!): Card!
+    reviewCard(data: ReviewCardInput!): Int!
 }
 
 type User {
@@ -15,12 +16,13 @@ type User {
     password: String!
     cards: [Card!]!
     reviews: [Review!]!
-    tags: [Tag!]!
 }
 
 type Review {
     id: ID!
     timestamp: Int!
+    user: User!
+    card: Card!
 }
 
 type Card {
@@ -28,11 +30,8 @@ type Card {
     front: String!
     back: String!
     reversible: String!
-}
-
-type Tag {
-    id: ID!
-    description: String!
+    user: User!
+    reviews: [Review!]!
 }
 
 # Inputs
@@ -51,4 +50,8 @@ input CreateCardInput {
 
 input GetCardInput {
     tags: [ID]
+}
+
+input ReviewCardInput {
+    timestamp: Int!
 }
