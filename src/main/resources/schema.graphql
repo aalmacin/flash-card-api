@@ -1,15 +1,14 @@
 type Query {
-    users(query: String): [User!]!
-    cards(query: GetCardInput): [User!]!
+    cards(query: GetCardInput): [AppUser!]!
 }
 
 type Mutation {
-    createUser(data: CreateUserInput!): User!
+    createAppUser(data: CreateAppUserInput!): AppUser!
     addCard(data: CreateCardInput!): Card!
     reviewCard(data: ReviewCardInput!): Int!
 }
 
-type User {
+type AppUser {
     id: ID!
     name: String!
     email: String!
@@ -21,7 +20,7 @@ type User {
 type Review {
     id: ID!
     timestamp: Int!
-    user: User!
+    appUser: AppUser!
     card: Card!
 }
 
@@ -30,13 +29,13 @@ type Card {
     front: String!
     back: String!
     reversible: String!
-    user: User!
+    appUser: AppUser!
     reviews: [Review!]!
 }
 
 # Inputs
 
-input CreateUserInput {
+input CreateAppUserInput {
     name: String!
     email: String!
     password: String!

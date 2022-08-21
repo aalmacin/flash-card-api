@@ -5,16 +5,16 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Getter
 @Setter
 public class Review {
     @Id
-    private int ID;
+    private int id;
     private long timestamp;
-    @SuppressWarnings("JpaAttributeTypeInspection")
-    private User user;
-    @SuppressWarnings("JpaAttributeTypeInspection")
+    @ManyToOne
     private Card card;
 }

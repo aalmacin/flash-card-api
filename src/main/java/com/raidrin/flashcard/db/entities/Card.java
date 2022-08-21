@@ -3,20 +3,20 @@ package com.raidrin.flashcard.db.entities;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 public class Card {
     @Id
-    private int ID;
+    private int id;
     private String front;
     private String back;
     private boolean reversible;
-    @SuppressWarnings("JpaAttributeTypeInspection")
-    private User user;
-    @SuppressWarnings("JpaAttributeTypeInspection")
-    private Review[] reviews;
+    @OneToMany
+    private Set<Review> reviews;
+    @ManyToOne
+    private AppUser appUser;
 }
